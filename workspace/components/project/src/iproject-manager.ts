@@ -5,6 +5,18 @@ export interface IProject {
 
 export interface IProjectManager {
     create: ()=>Promise<IProject>
+    view: JSX.Element  
 }
 
-export type IProjectManagerFactory = ()=>IProjectManager
+export interface IProjectStore{
+    query: ()=>Promise<IProject[]>
+}
+
+export interface IProjectListProps {
+    store: IProjectStore
+}
+
+export interface IProjectManagerFactory {
+    createProjectStore: ()=>IProjectStore
+    createProjectManager: (store:IProjectStore)=>IProjectManager
+}
